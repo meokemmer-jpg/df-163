@@ -1,0 +1,136 @@
+# DF-163 LexVance-Wegzugssteuer-Risiko-Tracker Per-Client-Deferral-Risk [CRUX-MK]
+# Welle: 25 (Skeleton-Wave-2 W51-B)
+# Domain: K_0 (LexVance Legal Revenue + Steuer-Risiko)
+
+df_id: DF-163
+df_name: lexvance-wegzugssteuer-risiko
+welle: 25
+domain: K_0
+status: SKELETON-CONDITIONAL
+crux-mk: true
+
+mission: |
+  Per-Client-Wegzugssteuer-Deferral-Risk-Tracking fuer LexVance. Tracking
+  Active-Deferrals-Count, Total-Deferred-Tax-EUR, High-Risk-Cases-Count,
+  Compliance-Deadline-Aging. NIEMALS Steuer-Empfehlungen produzieren oder
+  Anwaltliche Decisions ausloesen.
+
+# K11-K16
+k11_cascade_isolation: hard
+failure_blast_radius: 0
+dependency_dlq_strategy: "Eigenes State-File, append-only Risk-Log"
+
+k12_distillation_resistenz:
+  output_feeds_into_training: false
+  provenance_required_in_output: true
+  non_llm_validation_layer: true
+
+k13_independent_ground_truth:
+  external_anchor_type: filesystem
+  external_anchor_validation_frequency: per_run
+  pre_action_domain_check: true
+  pre_action_backup_check: true
+  pre_action_blast_radius_check: true
+
+k14_human_override_decay:
+  override_complexity: single_command
+  override_documentation_freshness_days: 30
+  martin_review_cadence: weekly  # K_0 Legal
+  bus_factor_handover_drilled: false
+
+k15_entropy_budget:
+  entropy_added_loc_estimate: 200
+  entropy_added_concepts:
+    - Wegzugssteuer-Deferral-Tracking
+    - Compliance-Deadline-Aging
+    - High-Risk-Case-Detection
+  entropy_justified_by_rho:
+    rho_low_eur_per_year: 10000
+    rho_high_eur_per_year: 60000
+    rho_confidence: PROVISIONAL
+
+k16_concurrent_spawn_protection: both
+lock_dir: /tmp/df-163.lock
+lock_stale_age_h: 6
+engine_pgrep_check: true
+lock_release_on: EXIT_INT_TERM
+
+# LC1-LC5
+lose_coupling:
+  LC1_graceful_degradation:
+    degradation_modes:
+      - full
+      - degraded_anchor
+      - standalone
+    degradation_test_required: true
+  LC2_direct_mode:
+    direct_mode_available: true
+    direct_mode_capability: 0.85
+    direct_mode_trigger: "DF_163_REAL_API_ENABLED=false"
+  LC3_circuit_breaker:
+    circuit_breaker_timeout_s: 30
+    circuit_breaker_open_threshold: 3
+    circuit_breaker_half_open_test_interval_s: 300
+  LC4_failure_isolation:
+    state_externalization: true
+    idempotent_operations: true
+    dependency_dlq_separate: false
+  LC5_health_check:
+    health_check_dependencies: []
+    health_check_degraded_score: 0.7
+    health_check_endpoint_or_file: branch-hub/state/df-163-health.json
+
+default_action:
+  description: "Mock-Mode: lese Mandanten-Wegzugssteuer-Files read-only, aggregiere Risk-Metriken, NIEMALS Legal-Advice"
+  rho_per_run_eur: 80
+  block_gates:
+    - gate_id: K13_PAV
+      block_reason: "K_0-Legal: Anker-Check + Mandanten-Vertrauen"
+      false_block_cost_eur: 15
+      legitimate_block_condition: "Env-Tag unverifiziert"
+  graceful_degradation_path: "Mock-Fallback (empty Mandanten-Liste)"
+
+activation_gates:
+  DF_163_REAL_API_ENABLED:
+    default: false
+    description: "Real-Read der Mandanten-Files (Anwalts-System)"
+    requires_phronesis_ticket: true
+  DF_163_ENV:
+    default: dev
+
+q0_sperr_liste:
+  - id: Q0-1
+    rule: "Steuer-Empfehlungen oder Legal-Advice"
+    enforcement: "DF hat KEINE Beratungs-Authority"
+  - id: Q0-2
+    rule: "Decision-Empfehlungen produzieren"
+    enforcement: "Decision-Keyword-RegEx"
+  - id: Q0-3
+    rule: "Mandanten-Decisions ausloesen"
+    enforcement: "Read-only-Pipeline"
+
+rho_estimate:
+  annual_eur: 30000
+  reason: "Wegzugssteuer-Risk-Audit-Automation, manuelle Compliance-Reviews ~16h/Quartal eingespart"
+  schwer_quantifizierbar: false
+
+migration_provenance:
+  source_welle: 25
+  pre_skeleton_engine_loc: 200
+  reference_pattern: df-145
+  skeleton_created: 2026-05-13
+
+trinity_compliance:
+  options_presented_in_spec: true
+  variants:
+    - conservative: "Mock-Mode default"
+    - aggressive: "DF_163_REAL_API_ENABLED=true (Mandanten-System-Integration)"
+    - contrarian: "DF-163 sunset wenn LegalTech-Tool eigenes Risk-Dashboard liefert"
+
+crux_bindung:
+  K_0: "LexVance-Revenue + Mandanten-Vertrauen geschuetzt durch Compliance-Visibility"
+  Q_0: "n/a"
+  I_min: "strukturierte K11-K16 + LC1-LC5 + Q0-Sperr-Liste"
+  W_0: "Anwalts-Review-Zeit 16h/Quartal eingespart"
+
+# [CRUX-MK]
