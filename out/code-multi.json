@@ -1,0 +1,36 @@
+{
+  "df": "df-163",
+  "ts": "2026-06-09T20:21:24.669372+00:00",
+  "crux": "[CRUX-MK]",
+  "winner_provider": "sonnet",
+  "winner_tests_passed": true,
+  "incumbent_q": -1.0,
+  "winner_q": 1511.0,
+  "improved": true,
+  "variants": [
+    {
+      "provider": "codex",
+      "parse_ok": true,
+      "tests_passed": false,
+      "n_tests": 1,
+      "n_assert": 10,
+      "coverage_pct": null,
+      "q": 1.0,
+      "error": null
+    },
+    {
+      "provider": "sonnet",
+      "parse_ok": true,
+      "tests_passed": true,
+      "n_tests": 11,
+      "n_assert": 18,
+      "coverage_pct": 92.0,
+      "q": 1511.0,
+      "error": null
+    }
+  ],
+  "canonical_verify": {
+    "parse_ok": true,
+    "tests_passed": true
+  }
+}
