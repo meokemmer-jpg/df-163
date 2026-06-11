@@ -1,0 +1,54 @@
+{
+  "audit_findings": [
+    {
+      "code": "K17-PAV",
+      "note": "pre_action_verification_done",
+      "status": "ok"
+    },
+    {
+      "code": "Q0-K0",
+      "note": "restricted_terms_absent",
+      "status": "ok"
+    },
+    {
+      "code": "K17-PAV",
+      "env_tag": "local",
+      "status": "ok"
+    }
+  ],
+  "clients_count": 3,
+  "df": "DF-163",
+  "iso_timestamp": "2026-06-11T01:37:18.251700+00:00",
+  "risk_per_client": {
+    "LV-CL-001": {
+      "risk_band": "medium",
+      "signals": [
+        "deadline_watch",
+        "documentation_gap"
+      ],
+      "stundung_open": true,
+      "value_eur": 1250000.0
+    },
+    "LV-CL-002": {
+      "risk_band": "low",
+      "signals": [
+        "complete_file"
+      ],
+      "stundung_open": false,
+      "value_eur": 420000.0
+    },
+    "LV-CL-003": {
+      "risk_band": "high",
+      "signals": [
+        "late_update",
+        "missing_confirmation"
+      ],
+      "stundung_open": true,
+      "value_eur": 780000.0
+    }
+  },
+  "source": "mock",
+  "stundungs_open": 2,
+  "total_value_eur": 2450000.0,
+  "welle": "25"
+}

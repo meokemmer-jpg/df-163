@@ -93,3 +93,4 @@ def test_helpers_cover_bucket_and_risk_rules():
         {"deferral_active": False, "deferred_tax_eur": 999999, "manual_high_risk": True},
         days_to_deadline=-10,
     ) is False
+

@@ -1,32 +1,42 @@
 {
   "df": "df-163",
-  "ts": "2026-06-09T20:21:24.669372+00:00",
+  "ts": "2026-06-11T01:37:18.405604+00:00",
   "crux": "[CRUX-MK]",
-  "winner_provider": "sonnet",
+  "winner_provider": "incumbent-kept",
   "winner_tests_passed": true,
-  "incumbent_q": -1.0,
-  "winner_q": 1511.0,
-  "improved": true,
+  "incumbent_q": 1530.0,
+  "winner_q": 1530.0,
+  "improved": false,
   "variants": [
+    {
+      "provider": "incumbent",
+      "parse_ok": true,
+      "tests_passed": true,
+      "n_tests": 2,
+      "n_assert": 24,
+      "coverage_pct": 100.0,
+      "q": 1530.0,
+      "error": null
+    },
     {
       "provider": "codex",
       "parse_ok": true,
-      "tests_passed": false,
+      "tests_passed": true,
       "n_tests": 1,
-      "n_assert": 10,
-      "coverage_pct": null,
-      "q": 1.0,
+      "n_assert": 14,
+      "coverage_pct": 96.0,
+      "q": 1497.0,
       "error": null
     },
     {
       "provider": "sonnet",
-      "parse_ok": true,
-      "tests_passed": true,
-      "n_tests": 11,
-      "n_assert": 18,
-      "coverage_pct": 92.0,
-      "q": 1511.0,
-      "error": null
+      "parse_ok": false,
+      "tests_passed": false,
+      "n_tests": 0,
+      "n_assert": null,
+      "coverage_pct": null,
+      "q": 0.0,
+      "error": "kein 2-Block-Output (nach Retry)"
     }
   ],
   "canonical_verify": {
