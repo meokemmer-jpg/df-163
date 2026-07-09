@@ -1,0 +1,5 @@
+{
+  "verdict": "HOLDS",
+  "reason": "Der Test ruft echte Logik mit aktiven, inaktiven, ueberfaelligen, manuellen und nicht-riskanten Gegenfaellen auf und prueft unterschiedliche Outputs statt nur Konstanten oder Mocks.",
+  "ts": "2026-07-08T15:08:22.048255+00:00"
+}
